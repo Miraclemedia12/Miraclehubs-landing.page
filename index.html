@@ -3,7 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Skills Training Community</title>
+    <title>Digital Skills Masterclass</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #ecfdf5;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* HEADER / NAVBAR */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-logo {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 24px 0 16px;
+            text-align: center;
+        }
+
+        .badge {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* CARD STYLES */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--primary);
+        }
+
+        /* BUTTONS */
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-sizing: border-box;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin: 16px 0;
+        }
+
+        .cta-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* LISTS */
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-list li i {
+            color: var(--primary);
+            font-size: 16px;
+            margin-top: 2px;
+        }
+
+        /* SKILLS GRID */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-item i {
+            color: var(--primary);
+        }
+
+        /* FAQ ACCORDION */
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        /* DISCLAIMER BOX */
+        .disclaimer-card {
+            background: #fffbe0;
+            border: 1px solid #ffe58f;
+            border-radius: var(--radius);
+            padding: 16px;
+            font-size: 12px;
+            color: #714b00;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .disclaimer-card strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 10px 0;
+        }
+
+        .footer-links a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* MODALS FOR PRIVACY & TERMS */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-body {
+            background: white;
+            border-radius: var(--radius);
+            padding: 24px;
+            max-width: 440px;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .modal-body h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .modal-body p, .modal-body ul {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .modal-body ul {
+            padding-left: 18px;
+        }
+
+        .close-btn {
+            background: var(--text-dark);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="brand-logo">
+                <i class="fa-solid fa-graduation-cap"></i> Digital Skills Academy
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <span class="badge"><i class="fa-solid fa-award"></i> Comprehensive Training Masterclass</span>
+            <h1>Build Practical Digital Skills with Step-by-Step Lessons</h1>
+            <p>Gain practical expertise in online marketing, modern content creation, and digital business systems through structured guidance.</p>
+            
+            <a href="#" class="cta-btn main-cta-link">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> ENROLL IN THE TRAINING NOW
+            </a>
+        </section>
+
+        <!-- TRAINING OVERVIEW -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-bullseye"></i> Program Overview
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted);">
+                Our training masterclass is structured for ambitious individuals who want to build functional expertise in the digital space. We focus on hands-on implementation, frameworks, and practical toolkits.
+            </p>
+        </div>
+
+        <!-- SKILLS COVERED -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-layer-group"></i> Skills You Will Master
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item"><i class="fa-solid fa-check"></i> Digital Marketing</div>
+                <div class="skill-item"><i class="fa-solid fa-check"></i> Content Strategy</div>
+                <div class="skill-item"><i class="fa-solid fa-check"></i> Audience Growth</div>
+                <div class="skill-item"><i class="fa-solid fa-check"></i> Social Platforms</div>
+                <div class="skill-item"><i class="fa-solid fa-check"></i> Web Fundamentals</div>
+                <div class="skill-item"><i class="fa-solid fa-check"></i> Campaign Tracking</div>
+            </div>
+        </div>
+
+        <!-- WHO SHOULD JOIN -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-users"></i> Who Is This Designed For?
+            </div>
+            <ul class="feature-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Beginners & Intermediate Learners:</strong> Individuals eager to master valuable digital skills.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Digital Entrepreneurs:</strong> Anyone wanting to build a practical online foundation.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Dedicated Practitioners:</strong> People with 1–2 hours daily to apply what they learn.</li>
+            </ul>
+        </div>
+
+        <!-- WHAT PARTICIPANTS RECEIVE -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-box-open"></i> Full Program Package
+            </div>
+            <ul class="feature-list">
+                <li><i class="fa-solid fa-check-double"></i> Complete video training modules & execution blueprints</li>
+                <li><i class="fa-solid fa-check-double"></i> Access to our dedicated student network & community group</li>
+                <li><i class="fa-solid fa-check-double"></i> Q&A guidance sessions & practical resource toolkits</li>
+            </ul>
+
+            <a href="#" class="cta-btn main-cta-link">
+                <i class="fa-solid fa-user-check"></i> JOIN THE MASTERCLASS NOW
+            </a>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-circle-question"></i> Frequently Asked Questions
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I get access after enrolling?</div>
+                <div class="faq-answer">Once you click the enrollment button, you will be directed to join our official student community portal instantly.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need prior technical experience?</div>
+                <div class="faq-answer">No prior experience is necessary. The curriculum starts with essential fundamentals and builds up logically.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What equipment is required?</div>
+                <div class="faq-answer">An internet-connected smartphone, tablet, or laptop is all you need to participate in the program.</div>
+            </div>
+        </div>
+
+        <!-- COMPLIANCE DISCLAIMER (TIKTOK POLICY REQUIRES THIS) -->
+        <div class="disclaimer-card">
+            <strong><i class="fa-solid fa-shield-halved"></i> Educational & Policy Disclaimer</strong>
+            This website and training program are strictly educational in nature. We do not offer employment, financial advice, or income guarantees. Individual results will vary depending entirely on personal application, effort, and execution of the material provided.
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>© 2026 Digital Skills Academy. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a onclick="openModal('privacyModal')">Privacy Policy</a> | 
+                <a onclick="openModal('termsModal')">Terms of Service</a>
+            </div>
+            <p style="margin-top: 8px;">Contact: support@digitalskillsacademy.com</p>
+        </footer>
+
+    </div>
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-body">
+            <h3>Privacy Policy</h3>
+            <p><strong>Effective Date: 2026</strong></p>
+            <p>Digital Skills Academy ("we," "our," or "us") respects your privacy. This Privacy Policy explains how information is handled when you visit our landing page and participate in our educational community.</p>
+            <p><strong>1. Information We Collect:</strong> We do not collect sensitive user financial details on this landing page. Standard non-personally identifiable technical telemetry (e.g., browser type, device type, referrer URL) may be processed via tracking pixels to evaluate advertisement performance.</p>
+            <p><strong>2. Third-Party Links:</strong> Our call-to-action buttons redirect users to external onboarding portals or messaging communities. We encourage users to review the privacy policies of any third-party service they visit.</p>
+            <p><strong>3. Use of Cookies:</strong> Standard measurement scripts may place cookies on your browser strictly for analytics, compliance verification, and performance optimization.</p>
+            <p><strong>4. Data Protection:</strong> We adhere to standard industry practices to ensure data integrity and safeguard user privacy across all digital touchpoints.</p>
+            <button class="close-btn" onclick="closeModal('privacyModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- TERMS OF SERVICE MODAL -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-body">
+            <h3>Terms of Service</h3>
+            <p><strong>Effective Date: 2026</strong></p>
+            <p>By accessing and utilizing this website, you agree to comply with the following Terms and Conditions:</p>
+            <p><strong>1. Educational Use Only:</strong> All content, community discussions, and training resources provided are strictly for educational and informational purposes. Nothing on this page or within the program constitutes financial, legal, or employment promises.</p>
+            <p><strong>2. No Earnings Guarantees:</strong> We make no express or implied promises or guarantees regarding financial return or income. Outcomes are the sole product of individual execution, practice, and skill application.</p>
+            <p><strong>3. Intellectual Property:</strong> All text, graphics, design elements, and program structures on this page remain the intellectual property of Digital Skills Academy and may not be duplicated without explicit written authorization.</p>
+            <p><strong>4. Limitation of Liability:</strong> Digital Skills Academy accepts no liability for decisions made or outcomes achieved as a result of implementing information shared within the program.</p>
+            <button class="close-btn" onclick="closeModal('termsModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- TIKTOK PIXEL SDK -->
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
@@ -13,92 +475,59 @@
       ttq.page();
     }(window, document, 'ttq');
     </script>
-    <style>
-        body { 
-            background-color: #e0f2f1; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            margin: 0; 
-            padding: 20px; 
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .card { background: white; border-radius: 20px; padding: 30px; max-width: 350px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
-        h2 { color: #555; font-size: 18px; margin-bottom: 5px; font-weight: 600; }
-        h1 { color: #d32f2f; font-size: 24px; line-height: 1.2; margin-top: 0; font-weight: 800; }
-        h3 { text-decoration: underline; font-size: 18px; margin-top: 25px; color: #333; }
-        ul { list-style: none; padding: 0; text-align: left; display: inline-block; margin: 20px 0; }
-        li { margin-bottom: 15px; font-size: 16px; position: relative; padding-left: 35px; color: #444; font-weight: 500; line-height: 1.4; }
-        li::before { content: '✓'; position: absolute; left: 0; color: #2ecc71; font-weight: bold; font-size: 22px; }
-        .commitment { background-color: #f0fff4; border-left: 5px solid #2ecc71; padding: 15px; border-radius: 8px; text-align: left; font-size: 15px; margin: 25px 0; color: #2d3436; line-height: 1.5; font-style: italic; }
-        .btn { background: linear-gradient(to bottom, #2ecc71, #27ae60); color: white; border: none; padding: 18px 20px; border-radius: 12px; font-weight: bold; font-size: 18px; width: 100%; cursor: pointer; box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4); text-decoration: none; display: block; box-sizing: border-box; transition: transform 0.2s ease; }
-        .btn:active { transform: scale(0.98); }
-        footer { margin-top: 25px; font-size: 12px; color: #aaa; letter-spacing: 1px; }
-    </style>
-</head>
-<body oncontextmenu="return false;">
 
-<div class="card">
-    <h2>In order to</h2>
-    <h1>Master Practical & In-Demand Digital Skills...</h1>
-    <h3>You Will Need These 3 Things</h3>
-    <ul>
-        <li>An internet-connected smartphone, tablet or laptop</li>
-        <li>1–2 hrs daily focus</li>
-        <li>A readiness to learn and execute</li>
-    </ul>
-    <div class="commitment">
-        <strong>YES!</strong> I have these 3 things and I am ready to implement this step-by-step practical training.
-    </div>
+    <!-- FIREBASE SDK v9 COMPAT -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
-    <a id="whatsapp-btn" href="#" class="btn">CLICK HERE TO JOIN THE TRAINING NOW!</a>
-
-    <footer>© 2026 DIGITAL SKILLS ACADEMY</footer>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
-
-<script>
-  // DISABLE RIGHT-CLICK & INSPECT SHORTCUTS
-  document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-  });
-
-  document.addEventListener('keydown', function(e) {
-      if (e.keyCode == 123 || 
-         (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
-         (e.ctrlKey && e.keyCode == 85)) {
+    <script>
+      // SECURITY SCRIPT: PREVENT RIGHT-CLICK & INSPECT KEYBOARD SHORTCUTS
+      document.addEventListener('contextmenu', function(e) {
           e.preventDefault();
+      });
+
+      document.addEventListener('keydown', function(e) {
+          if (e.keyCode == 123 || 
+             (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
+             (e.ctrlKey && e.keyCode == 85)) {
+              e.preventDefault();
+          }
+      });
+
+      // FIREBASE CONFIGURATION
+      const firebaseConfig = {
+        apiKey: "AIzaSyA7n2ue0wvZxarsQsZqgOlbhPrC5_KpAgE",
+        authDomain: "landing-page-99a45.firebaseapp.com",
+        databaseURL: "https://landing-page-99a45-default-rtdb.firebaseio.com",
+        projectId: "landing-page-99a45",
+        storageBucket: "landing-page-99a45.firebasestorage.app",
+        messagingSenderId: "893541422521",
+        appId: "1:893541422521:web:723558c3713f1b53355268",
+        measurementId: "G-7PWGQ7V6QF"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.database();
+
+      // FETCH DESTINATION URL REALTIME FROM 'links/page1'
+      db.ref('links/page1').on('value', (snapshot) => {
+        const url = snapshot.val();
+        if(url) { 
+            const links = document.querySelectorAll('.main-cta-link');
+            links.forEach(link => {
+                link.href = url;
+            });
+        }
+      });
+
+      // MODAL CONTROLS
+      function openModal(id) {
+          document.getElementById(id).classList.add('active');
       }
-  });
 
-  // UPDATED CONFIG WITH FULL API KEY
-  const firebaseConfig = {
-  apiKey: "AIzaSyA7n2ue0wvZxarsQsZqgOlbhPrC5_KpAgE",
-  authDomain: "landing-page-99a45.firebaseapp.com",
-  databaseURL: "https://landing-page-99a45-default-rtdb.firebaseio.com",
-  projectId: "landing-page-99a45",
-  storageBucket: "landing-page-99a45.firebasestorage.app",
-  messagingSenderId: "893541422521",
-  appId: "1:893541422521:web:723558c3713f1b53355268",
-  measurementId: "G-7PWGQ7V6QF"
-};
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-
-  // THIS FETCHES THE LINK FROM THE "page1" ENTRY IN YOUR DATABASE
-  db.ref('links/page1').on('value', (snapshot) => {
-    const url = snapshot.val();
-    if(url) { 
-        document.getElementById('whatsapp-btn').href = url; 
-    }
-  });
-</script>
+      function closeModal(id) {
+          document.getElementById(id).classList.remove('active');
+      }
+    </script>
 </body>
 </html>
